@@ -145,8 +145,7 @@
                 position: absolute;
                 right: 100px;
                 top: -75px;
-                transform:scale(0.7);
-
+                scale: (0.75);
             }
         }
     
@@ -200,7 +199,7 @@
             @include medium-up {
                 display: inline-block;
                 position: relative;
-                transform:scale(0.9);
+                scale: 0.8;
                 border-radius: 50px;
                 box-shadow: $shadow 0px 4px 15px;
             }
@@ -277,7 +276,6 @@
                 position: absolute;
                 right: 100px;
                 top: -60px;
-                transform:scale(1.1);
             }
         }
     
@@ -343,7 +341,7 @@
                 display: inline-block;
                 position: relative;
                 justify-self: center;
-                transform: scale(1.2);                
+                scale: (1.1);               
             }
         }
     
