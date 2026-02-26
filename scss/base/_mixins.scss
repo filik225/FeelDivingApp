@@ -1,0 +1,26 @@
+@use 'variables' as *;
+@use 'colors' as *;
+
+@mixin small-up {
+  @media (min-width: $bp-small) {
+    @content;
+  }
+}
+
+@mixin medium-up {
+  @media (min-width: $bp-medium) {
+    @content;
+  }
+}
+
+@mixin large-up {
+  @media (min-width: $bp-large) {
+    @content;
+  }
+}
+
+@mixin paragraph {
+  font-size: $font_size-4;
+  line-height: $line_height-md;
+  color: $gray-primary;
+}

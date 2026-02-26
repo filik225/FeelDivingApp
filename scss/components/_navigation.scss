@@ -1,0 +1,85 @@
+@use '../layout/layout' as *;
+@use '../base/variables' as *;
+@use '../base/colors' as *;
+@use '../base/mixins' as *;
+@use '../base/utils' as *;
+
+.navigation{
+    &--desktop {
+        display: none;
+
+        @include medium-up {
+            display: block;
+        }
+
+        & ul {
+            display: flex;
+        }
+
+        & a {
+            white-space: nowrap;
+            padding: 10px;
+            margin: 0 30px;
+            color: $gray-dark;
+            line-height: $line-height-base;
+            font-weight:$font_weight-semi-bold;
+            transition: color 0.1s linear;
+
+            &:hover {
+                color: $violet-primary;
+            }
+
+            &.active {
+                color: $violet-primary;
+            }
+        }
+    }
+    &--mobile {
+        background-color: $white;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 40%;  
+        bottom: 0;
+        z-index: 20;
+    }
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    &__top {
+        padding: 19px 24px;
+        border-bottom: 1px solid $violet-primary;
+        
+        &-heading {
+            font-size: 40px;
+            color: $violet-primary;
+            font-weight: $font_weight-bold;
+        }
+    }
+    
+    &__list {
+        padding: 46px 24px 18px;
+        border-bottom: 1px solid $violet-primary;
+
+        & a{
+            color: $gray-dark;
+            display: block;
+            margin-bottom: 28px;
+            font-weight: $font_weight-semi-bold;
+
+            &:hover {
+                color: $violet-primary;
+            }
+            &.active {
+                color: $violet-primary;
+            }
+        }
+                   
+    }
+    &__cta {
+        padding: 18px 24px;
+    }
+}

@@ -1,0 +1,47 @@
+@use 'variables' as *;
+@use 'colors' as *;
+@use 'mixins' as *;
+
+.heading {  
+    font-weight: $font_weight-bold;
+    margin: 15px 0;
+
+    &--1 {
+        font-size: 40px;
+
+        @include large-up {
+            font-size: $font-size-1;
+        }
+    }
+
+    &--2 {
+        font-size: $font-size-3;
+    
+        @include large-up {
+            font-size: $font-size-2;
+        }
+    }
+
+    &--3 {
+        font-size: 26px;
+    
+        @include large-up {
+            font-size: $font-size-3;
+        }
+    }
+}
+
+.label  {
+    display: block;
+    margin-bottom: 30px;
+    font-size: $font-size-3;
+    color: $violet-primary;
+    font-weight: bold;
+    line-height: 36px;
+    text-align: center;
+
+    @include medium-up {
+        text-align: start;
+        margin-bottom: 15px;
+    }
+}

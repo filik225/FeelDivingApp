@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@use 'colors' as *;
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: $gray-dark;
+    font-family: 'Raleway', sans-serif;
+    font-size: $font-size-base;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: $gradient_background;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    & li {
+        font-size: $font-size-base;
+    }
+}
+
+a, li {
+    text-decoration: none;
+}

@@ -1,0 +1,38 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+
+.header {
+    padding-top: 30px;
+    position: relative;
+
+
+    @include medium-up {
+        padding-top: 60px;
+    }
+
+    & .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+    }
+
+    &__btn {
+        &.btn {
+            display: none;
+
+            @include medium-up {
+                display: inline-block;
+            }
+        }
+    }
+    
+}
+
+.logo {
+
+    @include small-up {
+        margin-top: -10px;
+    }
+}

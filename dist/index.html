@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "description" content="Aplikacja na zakupy do gadżetów i prezentów.">
+    <meta http-equiv="X-UA Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurkowanie - podwodny świat</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <div id="overlay" class="overlay hidden"></div>
+    <header class="header">        
+        <div class="flex container">
+            <a href="#" class="logo__wrapper">
+                <img src="/img/doya-logo.png" alt="Nurkowanie - podwodny świat - logo" class="logo">
+            </a>
+
+            <nav class="navigation--desktop">
+                <ul>
+                    <li><a class="active" href="">Strona główna</a></li>
+                    <li><a href="https://biegiemprzezslowa.my.canva.site/aboutme">O mnie</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Kontakt</a></li> 
+                </ul>
+            
+            </nav>
+        <a href="#" class="btn btn--small header__btn">Pobierz FeelDivingApp!</a>
+
+        <button id="toggle-mobile" class="btn-menu">
+            <svg  width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.6" d="M1,4 H18 V6 H1 V4 M1,9 H18 V11 H1 V7 M3,14 H18 V16 H1 V14" fill="#737373" />
+            </svg>
+        </button>
+
+        <div id="menu-mobile" class="navigation--mobile hidden">
+            <div class="menu">
+                <div class="flex menu__top">
+                    <p class="menu__top-heading">Menu</p>
+                    <button id="hide-menu" class="btn-menu">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4L4 12M4 4L12 12" stroke="#737373" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <nav>
+                    <ul class="menu__list">
+                        <li><a class="active" href="">Strona główna</a></li>
+                        <li><a href="https://biegiemprzezslowa.my.canva.site/aboutme">O mnie</a></li>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Kontakt</a></li> 
+                    </ul>
+                </nav>
+                
+            <div class="menu__cta">
+                <a href="#" class="btn btn--small">Pobierz aplikację</a>   
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Sekcja główna - duży banner z tekstem i przyciskiem pobierz aplikację -->
+        <section class="showcase">
+            <div class="flex container">
+                <div class="showcase__text">
+                    <h1 class="heading heading--1">Nurkowanie - podwodny świat  wraz a aplikacją FeelDivingApp!</h1>
+                    <p>Zapraszamy do świata podwodnego odkrywania wraz z ze mną!</p>
+                    <a href="#" class="btn">Pobierz FeelDivingApp!</a>
+                </div>
+                <img src="/img/showcase.png" alt="Zdjęcie sekcji głównej" class="showcase__img showcase__img--desktop" data-aos="fade-left">
+                <img src="/img/showcase-mobile.png" alt="Zdjęcie sekcji głównej- mobile" class="showcase__img showcase__img--mobile">
+            </div>
+        </section>
+
+        <!-- Sekcja o mnie-->
+         <section class="app section">
+            <div class="container grid">
+                <div class="app__text">
+                    <h2 class="heading heading--2">O mnie</h2>
+                    <p>Witaj na stronie mojej aplikacji FeelDivingApp! Jestem nurkiem i pasjonatem podwodnego świata. Z racji mojego zainteresowania nurkowaniem, stworzyłem tę aplikację, która ma pomóc innym płetwonurkowm zapisywać swoje doświadczenia i dzielić się nimi z innymi.</p>
+                </div>
+                <img src="/img/aplikacja.png" alt="Zdjęcie aplikacji" class="app__img app__img--desktop" >
+                <img src="/img/aplikacja-mobile.png" alt="Zdjęcie aplikacji - mobile" class="app__img app__img--mobile">
+            </div>
+        </section>
+
+        <!-- Sekcja o aplikacji, jak działa, dlaczego warto, itp. -->
+        <section class="application section">
+            <div class="container">
+                <div>
+                    <p class="application__info">Jak działa ta aplikacja?</p>
+                </div>
+                <div class="grid">
+                    <img src="img/application.png" class="application__img--desktop" alt="Nurkowanie - podwodny świat">
+
+                    <div class="application__text">
+                        <span class="label">Utwórz konto</span>
+                        <h2 class="heading heading--2">Zarejestruj się i zacznij zapisywać swoje nurkowania!</h2>
+                        <p>Dołącz do mojej społeczności miłośników nurkowania, zapisuj swoje głębokości, czas nurkowania, ciekawe miejsca nurkowe i wiele więcej! Aplikacja jest w pełni darmowa i dostępna na komputerach i telefonach.</p>
+                    </div>
+
+                    <img src="img/application-mobile.png" class="application__img--mobile" alt="Nurkowanie - podwodny świat">
+
+                </div>
+            </div>
+        </section>
+        <!-- Sekcja z opiniami użytkowników, którzy korzystają z aplikacji -->
+        <section class="reviews section">
+            <div class="container grid">
+                <div class="reviews__text">
+                    <h2 class="heading heading--2">Opinie użytkowników</h2>
+                    <p>Mamy wielu użytkowników, którzy korzystają z aplikacji FeelDivingApp i dzielą się swoimi doświadczeniami! Czekam na twój feedback!</p>
+                </div>
+                <img src="/img/ar.png" alt="Zdjęcie sekcji opinii użytkowników" class="reviews__img reviews__img--desktop">
+                <img src="/img/ar-mobile.png" alt="Zdjęcie sekcji opinii użytkowników - mobile" class="reviews__img reviews__img--mobile">
+            </div>
+        </section>
+        <!-- Sekcja z FAQ -->
+        <section class="faq section">
+            <div class="container grid">
+                <img src="/img/faq.png" alt="Zdjęcie sekcji FAQ" class="faq__img faq__img--desktop">
+                <div class="faq__text">
+                    <h2 class="heading heading--2">FAQ</h2>
+                    <p>Masz pytania dotyczące aplikacji FeelDivingApp? Sprawdź moje FAQ, gdzie znajdziesz odpowiedzi na najczęściej zadawane pytania!</p>
+                </div>
+                <img src="/img/faq-mobile.png" alt="Zdjęcie sekcji FAQ - mobile" class="faq__img faq__img--mobile">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container flex">
+            <div class="footer__logo">
+                <a  class="footer__logo-wrapper" href="#">
+                    <img src="img/doya-logo.png" alt="Nurkowanie - podwodny świat - logo" class="logo">
+                </a>
+                <p>ul. Targowa 11, Gorzów Wielkopolski 66-400</p>
+            </div>
+            <div class="footer__text">
+                <p>© DafiDive™, 2026. All rights reserved.</p>
+                <p>Obrazki zastosowane w projekcie stworzone zostały przez sztuczną inteligencję i użyte są jedynie w celach wizualizacyjnych.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            delay: 200,
+            duration: 1200,
+            once: true
+        })
+    </script>
+    <script src="./js/all.js"></script>
+</body>
+</html>
