@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeelDivingApp - Work in Progress</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&amp;family=Pacifico&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Quicksand', sans-serif; }
+    
+    .ocean-bg {
+      background: linear-gradient(180deg, 
+        #0a1628 0%, 
+        #0d2137 15%,
+        #0f2847 30%,
+        #0a3d62 50%,
+        #0e4d6e 70%,
+        #1a5276 85%,
+        #2874a6 100%
+      );
+    }
+    
+    /* Bąbelki */
+    .bubble {
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+      border-radius: 50%;
+      animation: float-up linear infinite;
+    }
+    
+    @keyframes float-up {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-800px) scale(0.5); opacity: 0; }
+    }
+    
+    /* Nurek pracujący */
+    .diver-container {
+      animation: diver-float 4s ease-in-out infinite;
+    }
+    
+    @keyframes diver-float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
+    
+    /* Animacja pisania na laptopie */
+    .typing-hand {
+      animation: typing 0.3s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+    }
+    
+    @keyframes typing {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+    
+    /* Ekran laptopa miga */
+    .laptop-screen {
+      animation: screen-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes screen-glow {
+      0%, 100% { fill: #4ade80; }
+      50% { fill: #22c55e; }
+    }
+    
+    /* Promienie światła z góry */
+    .light-ray {
+      position: absolute;
+      top: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+      animation: ray-shimmer 8s ease-in-out infinite;
+    }
+    
+    @keyframes ray-shimmer {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+    
+    /* Pływające ryby */
+    .fish {
+      position: absolute;
+      animation: swim linear infinite;
+    }
+    
+    @keyframes swim {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(calc(100vw + 100px)); }
+    }
+    
+    /* Wodorosty */
+    .seaweed {
+      animation: sway 3s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+    
+    @keyframes sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+    
+    /* Progress bar */
+    .progress-fill {
+      animation: progress-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes progress-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    /* Tekst pulsujący */
+    .pulse-text {
+      animation: text-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes text-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    /* Nóżki nurka poruszające się */
+    .diver-fins {
+      animation: kick 0.5s ease-in-out infinite alternate;
+      transform-origin: top center;
+    }
+    
+    @keyframes kick {
+      0% { transform: rotate(-10deg); }
+      100% { transform: rotate(10deg); }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div class="ocean-bg min-h-full relative overflow-hidden">
+   <!-- Promienie światła -->
+   <div class="light-ray" style="left: 10%; width: 80px; height: 60%;"></div>
+   <div class="light-ray" style="left: 30%; width: 120px; height: 70%; animation-delay: -2s;"></div>
+   <div class="light-ray" style="left: 55%; width: 100px; height: 55%; animation-delay: -4s;"></div>
+   <div class="light-ray" style="left: 75%; width: 90px; height: 65%; animation-delay: -6s;"></div><!-- Bąbelki -->
+   <div id="bubbles-container"></div><!-- Pływające ryby -->
+   <div class="fish" style="top: 20%; animation-duration: 15s;">
+    <svg width="40" height="25" viewbox="0 0 40 25">
+     <ellipse cx="20" cy="12" rx="15" ry="8" fill="#f59e0b" opacity="0.8" /> <polygon points="35,12 45,5 45,19" fill="#f59e0b" opacity="0.8" /> <circle cx="12" cy="10" r="2" fill="#1e293b" />
+    </svg>
+   </div>
+   <div class="fish" style="top: 60%; animation-duration: 20s; animation-delay: -5s;">
+    <svg width="30" height="20" viewbox="0 0 40 25">
+     <ellipse cx="20" cy="12" rx="15" ry="8" fill="#06b6d4" opacity="0.7" /> <polygon points="35,12 45,5 45,19" fill="#06b6d4" opacity="0.7" /> <circle cx="12" cy="10" r="2" fill="#1e293b" />
+    </svg>
+   </div>
+   <div class="fish" style="top: 40%; animation-duration: 18s; animation-delay: -10s;">
+    <svg width="35" height="22" viewbox="0 0 40 25">
+     <ellipse cx="20" cy="12" rx="15" ry="8" fill="#a855f7" opacity="0.6" /> <polygon points="35,12 45,5 45,19" fill="#a855f7" opacity="0.6" /> <circle cx="12" cy="10" r="2" fill="#1e293b" />
+    </svg>
+   </div><!-- Główna zawartość -->
+   <div class="relative z-10 flex flex-col items-center justify-center min-h-full px-4 py-12">
+    <!-- Logo / Tytuł -->
+    <div class="text-center mb-8">
+     <h1 id="main-title" class="text-5xl md:text-7xl font-bold text-white mb-2" style="font-family: 'Pacifico', cursive; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">FeelDivingApp</h1>
+     <div class="mt-6 flex items-center justify-center gap-2 text-cyan-300">
+      <span>🤿</span> <span class="text-lg tracking-widest">NURKOWANIE • PASJA • PRZYGODA</span> <span>🐠</span>
+     </div>
+    </div><!-- Nurek pracujący na laptopie -->
+    <div class="diver-container mb-8">
+     <svg width="280" height="220" viewbox="0 0 280 220">
+      <!-- Nurek --> <g transform="translate(90, 30)">
+       <!-- Butla tlenowa -->
+       <rect x="65" y="35" width="20" height="50" rx="5" fill="#64748b" />
+       <rect x="68" y="30" width="14" height="10" rx="3" fill="#475569" />
+       <line x1="75" y1="30" x2="75" y2="20" stroke="#475569" stroke-width="3" /> <!-- Ciało -->
+       <ellipse cx="50" cy="60" rx="30" ry="25" fill="#0ea5e9" /> <!-- Głowa z maską -->
+       <circle cx="50" cy="25" r="22" fill="#fbbf24" /> <!-- Maska nurkowa -->
+       <ellipse cx="50" cy="22" rx="18" ry="12" fill="#1e293b" />
+       <ellipse cx="50" cy="22" rx="15" ry="9" fill="#38bdf8" opacity="0.6" /> <!-- Oczy za maską -->
+       <circle cx="44" cy="22" r="3" fill="#1e293b" />
+       <circle cx="56" cy="22" r="3" fill="#1e293b" />
+       <circle cx="45" cy="21" r="1" fill="white" />
+       <circle cx="57" cy="21" r="1" fill="white" /> <!-- Fajka -->
+       <rect x="68" y="15" width="8" height="20" rx="2" fill="#475569" />
+       <ellipse cx="72" cy="12" rx="6" ry="4" fill="#475569" /> <!-- Ręce piszące -->
+       <g class="typing-hand">
+        <path d="M20 60 Q0 80 -10 95" stroke="#fbbf24" stroke-width="8" fill="none" stroke-linecap="round" />
+        <circle cx="-10" cy="95" r="6" fill="#fbbf24" />
+       </g>
+       <g class="typing-hand" style="animation-delay: -0.15s;">
+        <path d="M80 60 Q100 80 110 95" stroke="#fbbf24" stroke-width="8" fill="none" stroke-linecap="round" />
+        <circle cx="110" cy="95" r="6" fill="#fbbf24" />
+       </g> <!-- Nogi z płetwami -->
+       <g class="diver-fins">
+        <path d="M35 85 Q30 110 20 130" stroke="#0ea5e9" stroke-width="10" fill="none" stroke-linecap="round" />
+        <ellipse cx="15" cy="140" rx="20" ry="6" fill="#10b981" transform="rotate(-20, 15, 140)" />
+       </g>
+       <g class="diver-fins" style="animation-delay: -0.25s;">
+        <path d="M65 85 Q70 110 80 130" stroke="#0ea5e9" stroke-width="10" fill="none" stroke-linecap="round" />
+        <ellipse cx="85" cy="140" rx="20" ry="6" fill="#10b981" transform="rotate(20, 85, 140)" />
+       </g>
+      </g> <!-- Laptop --> <g transform="translate(70, 115)">
+       <!-- Podstawa laptopa -->
+       <rect x="0" y="40" width="140" height="8" rx="2" fill="#374151" />
+       <rect x="10" y="35" width="120" height="10" rx="1" fill="#4b5563" /> <!-- Klawiatura -->
+       <rect x="20" y="37" width="100" height="6" rx="1" fill="#1f2937" /> <!-- Ekran -->
+       <rect x="15" y="0" width="110" height="35" rx="3" fill="#1f2937" />
+       <rect class="laptop-screen" x="20" y="3" width="100" height="29" rx="2" /> <!-- Kod na ekranie -->
+       <text x="25" y="15" fill="#1e293b" font-size="6" font-family="monospace">
+        &lt;FeelDiving/&gt;
+       </text>
+       <text x="25" y="23" fill="#1e293b" font-size="5" font-family="monospace">
+        loading...
+       </text>
+      </g> <!-- Bąbelki od nurka --> <circle cx="180" cy="40" r="4" fill="rgba(255,255,255,0.5)">
+       <animate attributename="cy" values="40;10" dur="2s" repeatcount="indefinite" />
+       <animate attributename="opacity" values="0.5;0" dur="2s" repeatcount="indefinite" />
+      </circle> <circle cx="190" cy="50" r="3" fill="rgba(255,255,255,0.4)">
+       <animate attributename="cy" values="50;15" dur="2.5s" repeatcount="indefinite" />
+       <animate attributename="opacity" values="0.4;0" dur="2.5s" repeatcount="indefinite" />
+      </circle> <circle cx="175" cy="55" r="2" fill="rgba(255,255,255,0.3)">
+       <animate attributename="cy" values="55;20" dur="3s" repeatcount="indefinite" />
+       <animate attributename="opacity" values="0.3;0" dur="3s" repeatcount="indefinite" />
+      </circle>
+     </svg>
+    </div><!-- Status -->
+    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-lg w-full text-center border border-white/20 shadow-2xl">
+     <div class="flex items-center justify-center gap-3 mb-4">
+      <span class="text-3xl">🔧</span>
+      <h2 id="status-text" class="text-2xl md:text-3xl font-bold text-white pulse-text">Prace trwają...</h2><span class="text-3xl">⚙️</span>
+     </div>
+     <p id="description-text" class="text-cyan-100 mb-6 text-lg">Moja aplikacja do nurkowania jest w trakcie tworzenia. Wkrótce będziesz mógł zanurzyć się w świat podwodnych przygód!</p><!-- Progress bar -->
+     <div class="relative h-4 bg-white/20 rounded-full overflow-hidden mb-4">
+      <div class="progress-fill absolute left-0 top-0 h-full bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full" style="width: 25%;"></div>
+     </div>
+     <p class="text-cyan-200 text-sm">Postęp: 25% ukończone</p>
+    </div><!-- Footer -->
+    <div class="mt-12 text-center text-cyan-200/60 text-sm">
+     <p>🌊 FeelDivingApp © 2026 • Wszystkie prawa zastrzeżone</p>
+     <p class="mt-1">Zanurz się w przygodę! 🐙</p>
+    </div>
+   </div><!-- Wodorosty na dole -->
+   <div class="absolute bottom-0 left-0 right-0 flex justify-around pointer-events-none">
+    <svg class="seaweed" width="40" height="120" viewbox="0 0 40 120" style="animation-delay: 0s;">
+     <path d="M20 120 Q10 90 20 60 Q30 30 20 0" stroke="#059669" stroke-width="8" fill="none" opacity="0.6" /> <path d="M25 120 Q35 85 25 50 Q15 20 25 0" stroke="#10b981" stroke-width="6" fill="none" opacity="0.5" />
+    </svg>
+    <svg class="seaweed" width="40" height="100" viewbox="0 0 40 100" style="animation-delay: -1s;">
+     <path d="M20 100 Q30 70 20 40 Q10 10 20 0" stroke="#047857" stroke-width="10" fill="none" opacity="0.5" />
+    </svg>
+    <svg class="seaweed" width="40" height="140" viewbox="0 0 40 140" style="animation-delay: -0.5s;">
+     <path d="M20 140 Q5 100 20 70 Q35 40 20 0" stroke="#059669" stroke-width="7" fill="none" opacity="0.6" /> <path d="M15 140 Q30 95 15 55 Q0 20 15 0" stroke="#10b981" stroke-width="5" fill="none" opacity="0.4" />
+    </svg>
+    <svg class="seaweed" width="40" height="90" viewbox="0 0 40 90" style="animation-delay: -1.5s;">
+     <path d="M20 90 Q10 60 20 30 Q30 10 20 0" stroke="#047857" stroke-width="9" fill="none" opacity="0.5" />
+    </svg>
+    <svg class="seaweed" width="40" height="110" viewbox="0 0 40 110" style="animation-delay: -2s;">
+     <path d="M20 110 Q35 80 20 50 Q5 20 20 0" stroke="#059669" stroke-width="8" fill="none" opacity="0.6" />
+    </svg>
+   </div>
+  </div>
+  <script>
+    // Generowanie bąbelków
+    function createBubbles() {
+      const container = document.getElementById('bubbles-container');
+      const bubbleCount = 20;
+      
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.bottom = '-20px';
+        bubble.style.width = (Math.random() * 15 + 5) + 'px';
+        bubble.style.height = bubble.style.width;
+        bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        bubble.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(bubble);
+      }
+    }
+    
+    createBubbles();
+    
+    // Element SDK
+    const defaultConfig = {
+      main_title: 'FeelDivingApp',
+      status_text: 'Prace trwają...',
+      description_text: 'Nasza aplikacja do nurkowania jest w trakcie tworzenia. Wkrótce będziesz mógł zanurzyć się w świat podwodnych przygód!',
+      primary_color: '#0ea5e9',
+      secondary_color: '#0a1628',
+      text_color: '#ffffff',
+      accent_color: '#10b981',
+      font_family: 'Quicksand'
+    };
+    
+    async function onConfigChange(config) {
+      const title = document.getElementById('main-title');
+      const status = document.getElementById('status-text');
+      const description = document.getElementById('description-text');
+      
+      if (title) title.textContent = config.main_title || defaultConfig.main_title;
+      if (status) status.textContent = config.status_text || defaultConfig.status_text;
+      if (description) description.textContent = config.description_text || defaultConfig.description_text;
+      
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: undefined
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['main_title', config.main_title || defaultConfig.main_title],
+        ['status_text', config.status_text || defaultConfig.status_text],
+        ['description_text', config.description_text || defaultConfig.description_text]
+      ]);
+    }
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4271bbe5b0b627',t:'MTc3MjE0MDM4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

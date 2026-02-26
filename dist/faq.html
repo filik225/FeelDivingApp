@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeelDivingApp FAQ</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    
+    html, body { height: 100%; }
+    
+    #app-wrapper {
+      background: linear-gradient(180deg, 
+        #87ceeb 0%,
+        #4fb3d9 15%,
+        #2b8ebb 30%,
+        #0066cc 50%,
+        #003d99 70%,
+        #001f4d 90%,
+        #000a1a 100%
+      );
+    }
+    
+    .faq-container {
+      animation: slideDown 0.8s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .faq-item {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+    
+    .faq-item:nth-child(1) { animation-delay: 0.1s; }
+    .faq-item:nth-child(2) { animation-delay: 0.2s; }
+    .faq-item:nth-child(3) { animation-delay: 0.3s; }
+    .faq-item:nth-child(4) { animation-delay: 0.4s; }
+    .faq-item:nth-child(5) { animation-delay: 0.5s; }
+    .faq-item:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .faq-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .faq-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-button:hover h3 {
+      color: #87ceeb;
+    }
+    
+    .toggle-icon {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .faq-item.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+    
+    .header-glow {
+      text-shadow: 0 0 20px rgba(135, 206, 235, 0.3);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full overflow-auto">
+   <div class="min-h-full flex items-center justify-center p-6">
+    <div class="w-full max-w-2xl faq-container">
+     <!-- Header -->
+     <div class="text-center mb-12">
+      <div class="text-5xl mb-3">
+       🤿
+      </div>
+      <h1 id="faq-title" class="text-5xl font-bold text-white mb-3 header-glow">Frequently Asked Questions</h1>
+      <p id="faq-subtitle" class="text-xl text-blue-100">Wszystko co chcesz wiedzieć o nurkowaniu</p>
+     </div><!-- FAQ Items -->
+     <div class="space-y-4">
+      <!-- Q1 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Co to jest FeelDivingApp?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        FeelDivingApp to cyfrowy dziennik nurkowy, który pozwala Ci rejestrować, śledzić i analizować wszystkie swoje nurkowania. Aplikacja zbiera dane o głębokości, czasie nurkowania, temperaturze wody, widoczności, lokalizacji i osobistych notatach z każdego nurkowania.
+       </div>
+      </div><!-- Q2 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Jakie dane mogę zapisać w aplikacji?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        Możesz rejestrować: datę nurkowania, lokalizację, głębokość maksymalną, czas trwania, temperaturę wody, widoczność podwodną, rodzaj nurkowania (rekreacyjne, techniczne itp.), gatunki zwierząt obserwowane i osobiste notatki o doświadczeniu.
+       </div>
+      </div><!-- Q3 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Czy moje dane są bezpieczne?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        Tak! Twoje dane nurkowe są przechowywane bezpiecznie w szyfrowanej bazie danych. Żaden inny użytkownik nie ma dostępu do Twojego dziennika nurkowego. Możesz również eksportować swoje dane w dowolnym momencie.
+       </div>
+      </div><!-- Q4 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Czy mogę udostępniać swoje nurkowania innym?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        Oczywiście! FeelDivingApp pozwala Ci udostępniać wybrane nurkowania ze znajomymi za pośrednictwem linków lub bezpośrednie zaproszenia. Możesz zdecydować, które nurkowania są prywatne, a które publiczne. Znajomi mogą przeglądać Twoje doświadczenia bez dostępu do edycji.
+       </div>
+      </div><!-- Q5 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Czy aplikacja ma funkcje analityczne?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        Tak! Aplikacja analizuje Twoje dane nurkowe i pokazuje statystyki: całkowity czas spędzony pod wodą, średnią głębokość, częste lokalizacje, gatunki zwierząt obserwowane i trendy w Twojej karierze nurkowej. Możesz też generować raporty miesięczne i roczne.
+       </div>
+      </div><!-- Q6 -->
+      <div class="faq-item rounded-2xl p-6">
+       <button class="faq-button" onclick="toggleFAQ(this)"> <h3 class="text-lg font-semibold text-white flex-1">Czy aplikacja jest dostępna offline?</h3>
+        <svg class="toggle-icon w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg></button>
+       <div class="faq-answer mt-4">
+        Tak! FeelDivingApp może pracować w trybie offline. Możesz dodawać nurkowania nawet bez połączenia internetowego. Dane zostaną automatycznie zsynchronizowane z serwerem, gdy powrócisz do internetu. Doskonałe rozwiązanie dla nukowania w miejscach z ograniczoną łącznością.
+       </div>
+      </div>
+     </div><!-- Footer CTA -->
+     <div class="text-center mt-12">
+      <p class="text-blue-100 mb-4">Masz jeszcze więcej pytań?</p><a href="kontakt.html" class="px-8 py-3 rounded-full bg-blue-400 text-white font-semibold hover:bg-blue-300 transition-all hover:scale-105"> Skontaktuj się ze mną! </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      faq_title: 'Frequently Asked Questions',
+      faq_subtitle: 'Wszystko co chcesz wiedzieć o nurkowaniu',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const title = document.getElementById('faq-title');
+      const subtitle = document.getElementById('faq-subtitle');
+      
+      if (title) title.textContent = config.faq_title || defaultConfig.faq_title;
+      if (subtitle) subtitle.textContent = config.faq_subtitle || defaultConfig.faq_subtitle;
+
+      const customFont = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${customFont}, sans-serif`;
+
+      const baseSize = config.font_size || defaultConfig.font_size;
+      if (title) title.style.fontSize = `${baseSize * 3.125}px`;
+      if (subtitle) subtitle.style.fontSize = `${baseSize * 1.3125}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['faq_title', config.faq_title || defaultConfig.faq_title],
+        ['faq_subtitle', config.faq_subtitle || defaultConfig.faq_subtitle]
+      ]);
+    }
+
+    function toggleFAQ(button) {
+      const item = button.closest('.faq-item');
+      item.classList.toggle('active');
+    }
+
+    function scrollToTop() {
+      document.getElementById('app-wrapper').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function initApp() {
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues
+        });
+      }
+    }
+
+    initApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4250e1a349ccaf',t:'MTc3MjEzOTAzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
